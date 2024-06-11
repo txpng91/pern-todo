@@ -7,6 +7,8 @@ const pool = require('./db');
 app.use(cors());
 app.use(express.json()); // Allows requests from client
 
+// process.env
+
 /*API routes*/
 
 // Create
