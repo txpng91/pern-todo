@@ -11,12 +11,14 @@ function InputTask() {
       const body = {
         description,
       };
-      const res = await fetch('http://localhost:5000/todos', {
+
+      // https://todo-list-demo.herokuapp.com/todos
+      const res = await fetch('/todos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       });
-      window.location = '/';
+      // window.location = '/';
     } catch (error) {
       console.error(error.message);
     }

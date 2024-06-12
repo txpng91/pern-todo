@@ -1,11 +1,19 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const path = require('path');
 const pool = require('./db');
 
 // Middleware
 app.use(cors());
 app.use(express.json()); // Allows requests from client
+
+app.use(express.static('./client/dist'));
+
+if (process.env.NODE_ENV === 'production') {
+  // Server static content
+  app.use(express.static(path.join(__dirname, '/client/dist')));
+}
 
 /*API routes*/
 
@@ -70,6 +78,10 @@ app.delete('/todos/:id', async (req, res) => {
   } catch (error) {
     console.error(error.message);
   }
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/dist/index.html'));
 });
 
 // Listen
