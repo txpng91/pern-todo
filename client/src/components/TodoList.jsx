@@ -7,7 +7,7 @@ function TodoList() {
   // Get tasks
   const getTodos = async () => {
     try {
-      const res = await fetch('/todos');
+      const res = await fetch('http://localhost:5000/todos');
       const todos = await res.json();
       setTodos(todos);
     } catch (error) {
@@ -18,7 +18,7 @@ function TodoList() {
   // Delete task
   const removeTask = async (id) => {
     try {
-      const res = await fetch(`/todos/${id}`, {
+      const res = await fetch(`http://localhost:5000/todos/${id}`, {
         method: 'DELETE',
       });
       setTodos(todos.filter((todo) => todo.id !== id));
