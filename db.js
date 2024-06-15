@@ -14,23 +14,8 @@ const proConfig = {
 };
 
 // Set up configurations
-// const pool = new Pool(
-//   process.env.NODE_ENV === 'production' ? proConfig : devConfig
-// );
-
-// Adjustments
-
-const pool =
-  process.env.NODE_ENV === 'production'
-    ? new Pool({
-        connectionString: proConfig,
-
-        ssl: {
-          rejectUnauthorized: false,
-        },
-      })
-    : new Pool({
-        connectionString: devConfig,
-      });
+const pool = new Pool(
+  process.env.NODE_ENV === 'production' ? proConfig : devConfig
+);
 
 module.exports = pool;
